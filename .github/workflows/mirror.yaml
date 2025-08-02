@@ -30,12 +30,6 @@ jobs:
     env:
       QYWX_ROBOT_URL: ${{ secrets.QYWX_ROBOT_URL }}
     steps:
-      - name: create daemon.json
-        run: "{\"insecure-registries\":[\"broce.cn:15000\"]}" > /etc/docker/daemon.json
-
-      - name: restart docker
-        run: systemctl restart docker
-        
       - name: Login to Docker Registry
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} ${{ github.event.inputs.TARGET_REGISTRY }}
 
